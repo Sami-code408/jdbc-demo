@@ -1,9 +1,8 @@
 package com.example.jdbc_demo.controller;
 
-import com.example.jdbc_demo.Entity.User;
+import com.example.jdbc_demo.entity.User;
 import com.example.jdbc_demo.constant.RequestMappingConstants;
 import com.example.jdbc_demo.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,13 +29,13 @@ public class UserController {
 
 
     @GetMapping(RequestMappingConstants.GET_USER)
-    public User getById(@PathVariable String id) {
+    public User getById(@PathVariable("id") String id) {
         return userService.getById(id).orElse(null);
     }
 
 
     @PutMapping(RequestMappingConstants.UPDATE_USER)
-    public User update(@PathVariable String id,
+    public User update(@PathVariable("id") String id,
                                @RequestBody User user) {
        user.setId(id);
         return userService.saveUser(user);

@@ -1,6 +1,6 @@
 package com.example.jdbc_demo.mapper;
 
-import com.example.jdbc_demo.Entity.User;
+import com.example.jdbc_demo.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,6 @@ public class UserMapper implements RowMapper<User> {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getPhoneNumber(),
-              //  user.getPassword(),
                 user.getAddress(),
                 user.getUserStatus()
         };
@@ -30,7 +29,6 @@ public class UserMapper implements RowMapper<User> {
         user.setFirstName(rs.getString("first_name"));
         user.setLastName(rs.getString("last_name"));
         user.setPhoneNumber(rs.getString("phone_number"));
-       // user.setPassword(rs.getString("password"));
         user.setAddress(rs.getString("address"));
         user.setUserStatus(rs.getString("user_status"));
         return user;
