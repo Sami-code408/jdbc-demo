@@ -20,6 +20,7 @@ public class User {
     private String password;
     private String address;
     private String userStatus;
+    private String userBirthPlace;
 
 
 
