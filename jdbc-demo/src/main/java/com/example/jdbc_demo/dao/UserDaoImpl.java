@@ -1,8 +1,8 @@
 package com.example.jdbc_demo.dao;
 
-import com.example.jdbc_demo.Entity.User;
+import com.example.jdbc_demo.entity.User;
 import com.example.jdbc_demo.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,16 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
+@AllArgsConstructor
 public class UserDaoImpl implements UserDao {
 
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -76,7 +73,6 @@ public class UserDaoImpl implements UserDao {
 
 
         if (id != null) {
-//            sql.append(hasCondition ? " AND" : " WHERE").append(" id = ?");
             sql.append(" WHERE id = ?");
             hasCondition = true;
         }
@@ -94,6 +90,6 @@ public class UserDaoImpl implements UserDao {
         if (email != null) params.add(email);
         if (phone != null) params.add(phone);
 
-        return jdbcTemplate.query(sql.toString(), params.toArray(), userMapper);
+        return jdbcTemplate.query(sql.toString(), userMapper, params.toArray());
     }
 }
